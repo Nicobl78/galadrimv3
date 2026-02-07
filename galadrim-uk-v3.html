@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galadrim UK | Product Engineering for Ambitious Companies</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --bg: #FAFAFA;
+    --bg-alt: #F5F5F7;
+    --text: #111111;
+    --text-2: #444444;
+    --text-3: #777777;
+    --text-4: #AAAAAA;
+    --border: #E5E5E5;
+    --border-light: #EFEFEF;
+    --accent: #5046E5;
+    --accent-soft: #F0EFFE;
+    --green: #16A34A;
+    --green-soft: #F0FDF4;
+    --font: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: var(--font); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--accent); color: white; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0.9rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-left { display: flex; align-items: center; gap: 3rem; }
+  .nav-logo {
+    font-weight: 800; font-size: 1.2rem; letter-spacing: -0.05em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 0.8rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+  .nav-fr { font-size: 0.75rem; color: var(--text-4); text-decoration: none; font-weight: 500; }
+  .nav-fr:hover { color: var(--text-3); }
+  .nav-cta {
+    padding: 0.5rem 1.2rem; background: var(--accent); color: white;
+    border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    max-width: 1200px; margin: 0 auto;
+    padding: 8rem 2rem 4.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 4.5vw, 3.25rem);
+    font-weight: 800; line-height: 1.12;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
+  }
+  .hero-desc {
+    font-size: 1rem; color: var(--text-2); line-height: 1.75;
+    max-width: 460px; margin-bottom: 2rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; align-items: center; margin-bottom: 2.5rem; }
+  .btn-main {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; background: var(--accent); color: white;
+    border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; font-family: var(--font);
+    border: none; cursor: pointer;
+  }
+  .btn-main:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 0.75rem 1.5rem;
+    background: transparent; color: var(--text);
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; font-family: var(--font);
+  }
+  .btn-ghost:hover { border-color: var(--text); }
+  .hero-metrics { display: flex; gap: 2.5rem; }
+  .hero-metric-val { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; }
+  .hero-metric-lbl { font-size: 0.68rem; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.15rem; }
+
+  .hero-visual {
+    position: relative; border-radius: 16px; overflow: hidden;
+    aspect-ratio: 4/3; background: var(--bg-alt);
+  }
+  .hero-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* LOGO BELT */
+  .logos {
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    padding: 4rem 2rem;
+  }
+  .logos-inner { max-width: 1100px; margin: 0 auto; }
+  .logos-label {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--text-4); font-weight: 600; text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2.5rem 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+  .logos-grid img {
+    height: 52px; width: auto; max-width: 160px;
+    object-fit: contain;
+    transition: all 0.3s;
+  }
+  .logos-grid img:hover { opacity: 1 !important; filter: grayscale(0%) !important; }
+  .logos-grid .logo-global {
+    opacity: 0.7; filter: none;
+  }
+  .logos-grid .logo-secondary {
+    opacity: 0.4; filter: grayscale(100%);
+    height: 38px;
+  }
+
+  /* SECTION SHARED */
+  .section-head { margin-bottom: 3rem; }
+  .section-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--accent); font-weight: 700; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800;
+    letter-spacing: -0.035em; line-height: 1.15;
+  }
+  .section-sub {
+    margin-top: 0.75rem; color: var(--text-2); font-size: 0.95rem;
+    line-height: 1.7; max-width: 520px;
+  }
+
+  /* CASE STUDIES */
+  .cases { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .case-card {
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 2rem; transition: all 0.3s;
+    cursor: pointer; text-decoration: none; color: inherit; display: block;
+  }
+  .case-card:hover { border-color: var(--accent); box-shadow: 0 6px 24px rgba(80,70,229,0.07); transform: translateY(-2px); }
+  .case-client { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-4); font-weight: 700; margin-bottom: 1rem; }
+  .case-num { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.15rem; }
+  .case-num-label { font-size: 0.7rem; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .case-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.35rem; line-height: 1.3; }
+  .case-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.6; }
+  .case-tags { display: flex; gap: 0.4rem; margin-top: 1rem; flex-wrap: wrap; }
+  .case-tag {
+    padding: 0.25rem 0.6rem; background: var(--bg-alt); border-radius: 6px;
+    font-size: 0.65rem; font-weight: 600; color: var(--text-3);
+  }
+
+  /* WHY GALADRIM */
+  .why { background: var(--bg-alt); padding: 5rem 2rem; }
+  .why-inner { max-width: 1200px; margin: 0 auto; }
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; }
+  .why-card {
+    background: white; border: 1px solid var(--border-light);
+    border-radius: 14px; padding: 2rem; transition: all 0.3s;
+  }
+  .why-card:hover { border-color: var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .why-card-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.85rem; margin-bottom: 1.25rem;
+  }
+  .why-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .why-card p { font-size: 0.82rem; color: var(--text-2); line-height: 1.7; }
+
+  /* FOUNDERS */
+  .founders { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .founders-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .founders-photo {
+    aspect-ratio: 4/3; border-radius: 14px; overflow: hidden;
+  }
+  .founders-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .founder-item { margin-bottom: 1.75rem; }
+  .founder-item:last-child { margin-bottom: 0; }
+  .founder-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .founder-role { font-size: 0.78rem; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem; }
+  .founder-bio { font-size: 0.82rem; color: var(--text-2); line-height: 1.65; }
+  .team-from {
+    display: flex; gap: 2rem; align-items: center;
+    margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);
+  }
+  .team-from-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-4); font-weight: 600; white-space: nowrap; }
+  .team-from-logos { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  .team-from-logos span { font-size: 0.72rem; color: var(--text-4); font-weight: 600; }
+
+  /* SERVICES */
+  .services { background: var(--text); color: white; padding: 5rem 2rem; }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services .section-label { color: rgba(255,255,255,0.35); }
+  .services .section-title { color: white; }
+  .services .section-sub { color: rgba(255,255,255,0.5); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+  .svc {
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
+    padding: 1.75rem; transition: all 0.3s;
+  }
+  .svc:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); }
+  .svc h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .svc p { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+  .svc-techs { display: flex; gap: 0.35rem; margin-top: 1rem; flex-wrap: wrap; }
+  .svc-tech {
+    padding: 0.2rem 0.5rem; border-radius: 5px;
+    background: rgba(255,255,255,0.06);
+    font-size: 0.62rem; font-weight: 600; color: rgba(255,255,255,0.4);
+  }
+
+  /* PROCESS */
+  .process { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+  .step { padding: 1.75rem; border: 1px solid var(--border); margin-right: -1px; transition: background 0.3s; }
+  .step:first-child { border-radius: 14px 0 0 14px; }
+  .step:last-child { border-radius: 0 14px 14px 0; margin-right: 0; }
+  .step:hover { background: var(--bg-alt); }
+  .step-num { font-size: 0.62rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .step h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .step p { font-size: 0.78rem; color: var(--text-2); line-height: 1.6; }
+  .step-time { margin-top: 1rem; font-size: 0.65rem; color: var(--text-4); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* LEGAL/TRUST SECTION */
+  .trust { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; border-top: 1px solid var(--border-light); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .trust-item {}
+  .trust-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--green-soft); color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.75rem; margin-bottom: 0.75rem;
+  }
+  .trust-item h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .trust-item p { font-size: 0.75rem; color: var(--text-3); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--bg-alt); padding: 5rem 2rem; }
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+  .test-card {
+    background: white; border: 1px solid var(--border-light);
+    border-radius: 14px; padding: 1.75rem;
+    display: flex; flex-direction: column;
+  }
+  .test-quote { font-size: 0.88rem; color: var(--text); line-height: 1.7; flex: 1; margin-bottom: 1.25rem; font-weight: 500; }
+  .test-sep { width: 24px; height: 2px; background: var(--border); margin-bottom: 1rem; }
+  .test-name { font-size: 0.82rem; font-weight: 700; }
+  .test-role { font-size: 0.7rem; color: var(--text-3); margin-top: 0.1rem; }
+  .test-context { font-size: 0.65rem; color: var(--accent); font-weight: 600; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* BLOG */
+  .blog-preview { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .blog-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 2.5rem; }
+  .blog-more { font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .blog-more:hover { text-decoration: underline; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .blog-card { text-decoration: none; color: inherit; display: block; }
+  .blog-card:hover .blog-card-title { color: var(--accent); }
+  .blog-thumb {
+    aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .blog-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .blog-card-tag { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; margin-bottom: 0.4rem; }
+  .blog-card-title { font-size: 0.92rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; transition: color 0.2s; }
+
+  /* CTA */
+  .cta { padding: 5rem 2rem; text-align: center; border-top: 1px solid var(--border-light); }
+  .cta-inner { max-width: 560px; margin: 0 auto; }
+  .cta h2 {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800; letter-spacing: -0.035em; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .cta p { color: var(--text-2); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+  .cta-note { display: block; margin-top: 0.75rem; font-size: 0.7rem; color: var(--text-4); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  .footer-brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.05em; margin-bottom: 0.65rem; }
+  .footer-brand-desc { font-size: 0.78rem; color: var(--text-3); line-height: 1.6; max-width: 250px; }
+  .footer-col h4 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-4); font-weight: 700; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.45rem; }
+  .footer-col a { color: var(--text-3); text-decoration: none; font-size: 0.78rem; transition: color 0.15s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.75rem; border-top: 1px solid var(--border-light);
+  }
+  .footer-copy { font-size: 0.68rem; color: var(--text-4); }
+  .footer-locs { display: flex; gap: 1.5rem; }
+  .footer-locs span { font-size: 0.68rem; color: var(--text-3); }
+
+  /* BADGE */
+  .badge {
+    position: fixed; bottom: 1rem; right: 1rem;
+    padding: 0.35rem 0.85rem; background: white;
+    border: 1px solid var(--border); border-radius: 100px;
+    font-size: 0.65rem; color: var(--text-3);
+    z-index: 99; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .badge strong { color: var(--accent); font-weight: 700; }
+
+  /* ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(14px); transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-visual { max-width: 480px; }
+    .founders-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .founders-photo { max-width: 480px; }
+    .cases-grid, .why-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .step { margin-right: 0; margin-bottom: -1px; }
+    .step:first-child { border-radius: 14px 14px 0 0; }
+    .step:last-child { border-radius: 0 0 14px 14px; }
+    .step:nth-child(2), .step:nth-child(3) { border-radius: 0; }
+    .test-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding-top: 6rem; gap: 2.5rem; }
+    .hero-metrics { flex-direction: column; gap: 1rem; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .services-grid, .process-steps, .blog-grid { grid-template-columns: 1fr; }
+    .step { border-radius: 0 !important; }
+    .step:first-child { border-radius: 14px 14px 0 0 !important; }
+    .step:last-child { border-radius: 0 0 14px 14px !important; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .hero, .cases, .founders, .process, .blog-preview, .trust { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .logos, .why, .services, .testimonials, .cta, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="#" class="nav-logo">galadrim.</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="https://galadrim.fr" class="nav-fr">galadrim.fr</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Product engineering from Paris, for the UK</div>
+    <h1>Your dedicated engineering team, one hour away.</h1>
+    <p class="hero-desc">100+ senior engineers, designers and product managers. We build and scale web, mobile and AI products for companies across Europe, from our offices in Paris, Nantes and Lyon.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-main">Book a discovery call</a>
+      <a href="#work" class="btn-ghost">View our work</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="hero-metric">
+        <div class="hero-metric-val">600+</div>
+        <div class="hero-metric-lbl">Clients since 2017</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val">100+</div>
+        <div class="hero-metric-lbl">Team members</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val">8 yrs</div>
+        <div class="hero-metric-lbl">Track record</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://galadrim.fr/_astro/team2.Cf8QXjuw_1ktPT8.webp" alt="Galadrim engineering team working together">
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos reveal">
+  <div class="logos-inner">
+    <p class="logos-label">Trusted by 600+ companies including</p>
+    <div class="logos-grid">
+      <!-- Row 1: Instant global recognition -->
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/chanel.png" alt="Chanel">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/decathlon-2.png" alt="Decathlon">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/carrefour.png" alt="Carrefour">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/shopify.png" alt="Shopify">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/stripe.png" alt="Stripe">
+      <!-- Row 2: Strong international brands -->
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/volkswagen.png" alt="Volkswagen">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/bnp.png" alt="BNP Paribas">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/universal.png" alt="Universal Music">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/datadog.png" alt="Datadog">
+      <img class="logo-global" src="https://galadrim.fr/img/logos_new/bandai-namco.png" alt="Bandai Namco">
+      <!-- Row 3: European/industry brands -->
+      <img class="logo-secondary" src="https://galadrim.fr/img/logos_new/clarins.png" alt="Clarins">
+      <img class="logo-secondary" src="https://galadrim.fr/img/logos_new/vinci.png" alt="Vinci">
+      <img class="logo-secondary" src="https://galadrim.fr/img/logos_new/leroymerlin.png" alt="Leroy Merlin">
+      <img class="logo-secondary" src="https://galadrim.fr/img/logos_new/vidal.png" alt="Vidal">
+      <img class="logo-secondary" src="https://galadrim.fr/img/logos_new/sorbonne.png" alt="Sorbonne">
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="cases reveal" id="work">
+  <div class="section-head">
+    <p class="section-label">Selected work</p>
+    <h2 class="section-title">Results, not promises.</h2>
+    <p class="section-sub">Every engagement ships with measurable outcomes. Here are a few recent ones.</p>
+  </div>
+  <div class="cases-grid">
+    <a href="#" class="case-card">
+      <p class="case-client">Showroomprive · Europe's #2 flash-sales platform</p>
+      <p class="case-num">5x</p>
+      <p class="case-num-label">Faster product description output</p>
+      <p class="case-title">Generative AI pipeline producing 40,000 product pages per month</p>
+      <p class="case-desc">Built an end-to-end system using GPT-4o that generates rich product descriptions at scale. Operator time per description divided by five, with full brand-specific quality controls.</p>
+      <div class="case-tags"><span class="case-tag">Generative AI</span><span class="case-tag">Python</span><span class="case-tag">GPT-4o</span><span class="case-tag">Data Engineering</span></div>
+    </a>
+    <a href="#" class="case-card">
+      <p class="case-client">Vidal · Healthcare, 30 countries</p>
+      <p class="case-num">700k+</p>
+      <p class="case-num-label">Healthcare professionals served across Europe</p>
+      <p class="case-title">Award-winning patient app, concept to App Store in 10 weeks</p>
+      <p class="case-desc">Designed and developed the Vidal Ma Sante mobile app for patients with chronic conditions. Won the Prix Galien for e-health innovation in 2022.</p>
+      <div class="case-tags"><span class="case-tag">React Native</span><span class="case-tag">UX Research</span><span class="case-tag">Health</span></div>
+    </a>
+    <a href="#" class="case-card">
+      <p class="case-client">Paladin · SaaS startup</p>
+      <p class="case-num">90 days</p>
+      <p class="case-num-label">From concept to production</p>
+      <p class="case-title">Full SaaS product built and launched in a single quarter</p>
+      <p class="case-desc">Took the product from whiteboard to live commercial platform. Scope included product strategy, UX/UI design, full-stack development and launch.</p>
+      <div class="case-tags"><span class="case-tag">React</span><span class="case-tag">Node.js</span><span class="case-tag">Product Strategy</span></div>
+    </a>
+    <a href="#" class="case-card">
+      <p class="case-client">Clarins · #1 prestige skincare in Europe</p>
+      <p class="case-num">2+ yrs</p>
+      <p class="case-num-label">Ongoing partnership since 2019</p>
+      <p class="case-title">New subscription e-commerce platform for a global beauty group</p>
+      <p class="case-desc">End-to-end development of Clarins Unlimited, a recurring subscription service with personalised beauty boxes, marketing landing pages and automated scaling on AWS.</p>
+      <div class="case-tags"><span class="case-tag">E-commerce</span><span class="case-tag">AWS</span><span class="case-tag">Agile</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- WHY GALADRIM -->
+<section class="why reveal">
+  <div class="why-inner">
+    <div class="section-head">
+      <p class="section-label">Why a Paris-based agency</p>
+      <h2 class="section-title">Senior European engineers.<br>London-compatible hours.</h2>
+      <p class="section-sub">France trains more engineers per capita than any other Western European country. We've built a company around that talent and made it available to you, one timezone away.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-icon">1h</div>
+        <h3>Same working day, zero friction</h3>
+        <p>Paris is one hour ahead of London. Real-time Slack, daily standups, pair programming sessions. No overnight async gaps, no timezone coordination overhead.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">++</div>
+        <h3>Integrated product squads</h3>
+        <p>Not freelancers, not body shops. Fully integrated teams with engineers, designers and product managers. One contract, one Slack channel, complete accountability.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">Eng</div>
+        <h3>Engineers who've built at scale</h3>
+        <p>Team members from Meta, Microsoft, IBM, Datadog and Stripe. Average 6+ years of commercial experience. Founders previously at Facebook, IBM and Ecole Polytechnique (France's MIT equivalent).</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">GBP</div>
+        <h3>Competitive rates, no compromise</h3>
+        <p>Paris cost of living is 30-40% below London, and we operate without intermediaries. That means senior talent at rates that reflect the real cost difference, not a quality shortcut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section class="founders reveal" id="team">
+  <div class="section-head">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Built by engineers,<br>for engineers.</h2>
+  </div>
+  <div class="founders-layout">
+    <div class="founders-photo">
+      <img src="https://galadrim.fr/_astro/founders-new.BqwG1Ys7_1j5tkF.webp" alt="Jean and Arnaud, Galadrim founders">
+    </div>
+    <div class="founders-text">
+      <div class="founder-item">
+        <div class="founder-name">Jean Ashton</div>
+        <div class="founder-role">CEO</div>
+        <div class="founder-bio">Previously at IBM. Graduate of Ecole Polytechnique and EPFL (Swiss Federal Institute of Technology). Leads business strategy, client relationships and international expansion.</div>
+      </div>
+      <div class="founder-item">
+        <div class="founder-name">Arnaud Albalat</div>
+        <div class="founder-role">CTO</div>
+        <div class="founder-bio">Previously at Facebook and Microsoft. Graduate of Ecole Polytechnique and ENS (Ecole Normale Superieure). Leads technical vision, engineering standards and hiring.</div>
+      </div>
+      <div class="team-from">
+        <span class="team-from-label">Team alumni from</span>
+        <div class="team-from-logos">
+          <span>Meta</span>
+          <span>Microsoft</span>
+          <span>IBM</span>
+          <span>Datadog</span>
+          <span>Stripe</span>
+          <span>Shopify</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services reveal" id="services">
+  <div class="services-inner">
+    <div class="section-head">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">Everything to ship.<br>Nothing you don't need.</h2>
+      <p class="section-sub">Full-stack product engineering. One partner, one contract.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc">
+        <h3>Web Platforms</h3>
+        <p>High-performance web applications, from internal tools to customer-facing products. Built for scale from day one.</p>
+        <div class="svc-techs"><span class="svc-tech">React</span><span class="svc-tech">Node.js</span><span class="svc-tech">TypeScript</span><span class="svc-tech">Angular</span><span class="svc-tech">.NET</span></div>
+      </div>
+      <div class="svc">
+        <h3>Mobile Apps</h3>
+        <p>Native and cross-platform mobile experiences. From concept to App Store, with ongoing iteration and support.</p>
+        <div class="svc-techs"><span class="svc-tech">React Native</span><span class="svc-tech">Flutter</span><span class="svc-tech">Swift</span><span class="svc-tech">Kotlin</span></div>
+      </div>
+      <div class="svc">
+        <h3>AI and Machine Learning</h3>
+        <p>Generative AI, computer vision, predictive models. Production-grade pipelines and custom LLM integrations.</p>
+        <div class="svc-techs"><span class="svc-tech">Python</span><span class="svc-tech">GPT / LLMs</span><span class="svc-tech">Computer Vision</span><span class="svc-tech">Data Engineering</span></div>
+      </div>
+      <div class="svc">
+        <h3>E-commerce</h3>
+        <p>Optimised storefronts, subscription models, checkout flows. Shopify, headless, or fully custom builds.</p>
+        <div class="svc-techs"><span class="svc-tech">Shopify</span><span class="svc-tech">Headless</span><span class="svc-tech">Custom</span></div>
+      </div>
+      <div class="svc">
+        <h3>Product Design</h3>
+        <p>Discovery, UX research, interface design. We validate with real users before writing any code.</p>
+        <div class="svc-techs"><span class="svc-tech">UX Research</span><span class="svc-tech">UI Design</span><span class="svc-tech">Prototyping</span><span class="svc-tech">User Testing</span></div>
+      </div>
+      <div class="svc">
+        <h3>Cloud and DevOps</h3>
+        <p>Infrastructure as code, CI/CD, monitoring. Resilient, cost-efficient architecture from launch.</p>
+        <div class="svc-techs"><span class="svc-tech">AWS</span><span class="svc-tech">GCP</span><span class="svc-tech">Azure</span><span class="svc-tech">Terraform</span><span class="svc-tech">Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process reveal" id="method">
+  <div class="section-head">
+    <p class="section-label">How we work</p>
+    <h2 class="section-title">Transparent, predictable delivery.</h2>
+    <p class="section-sub">Scrum-based sprints with regular demos. You see progress constantly and can adjust priorities at any point.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01 Discover</div>
+      <h3>Scope and define</h3>
+      <p>We map your goals, constraints and users. Together we define an MVP scope that maximises value and controls risk.</p>
+      <div class="step-time">1-2 weeks</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02 Design</div>
+      <h3>UX, UI and architecture</h3>
+      <p>Wireframes, visual design and technical architecture. All validated with you before development begins.</p>
+      <div class="step-time">2-3 weeks</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03 Build</div>
+      <h3>Sprint-based delivery</h3>
+      <p>Two-week sprints, weekly demos, continuous deployment. Full transparency on velocity, blockers and trade-offs.</p>
+      <div class="step-time">6-12 weeks</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04 Scale</div>
+      <h3>Launch and evolve</h3>
+      <p>Production deployment, monitoring, performance tuning. We stay on as your long-term engineering partner.</p>
+      <div class="step-time">Ongoing</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL / TRUST -->
+<section class="trust reveal">
+  <div class="section-head">
+    <p class="section-label">Working with a European partner</p>
+    <h2 class="section-title">Built for cross-border trust.</h2>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon">UK</div>
+      <h4>Contracts under English law</h4>
+      <p>All UK client contracts governed by English law, with London-based dispute resolution. Standard MSA and SOW templates available on request.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">EU</div>
+      <h4>GDPR and UK GDPR compliant</h4>
+      <p>Full compliance with both EU GDPR and the UK's post-Brexit data protection framework. EU-based data processing by default.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">IP</div>
+      <h4>Full IP transfer on delivery</h4>
+      <p>All intellectual property rights transfer to you upon payment. Source code, documentation and assets are yours, no lock-in.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">GBP</div>
+      <h4>Invoicing in GBP</h4>
+      <p>We invoice in pounds sterling. No currency conversion on your side, no hidden FX costs. Payment terms aligned with UK business standards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials reveal">
+  <div class="testimonials-inner">
+    <div class="section-head">
+      <p class="section-label">Client voices</p>
+      <h2 class="section-title">What they say.</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-context">SaaS, 3-month build</div>
+        <div class="test-quote">"In just three months, we launched a fully functional product. Their speed and quality exceeded every benchmark we set."</div>
+        <div class="test-sep"></div>
+        <div class="test-name">Hugo des Longchamps</div>
+        <div class="test-role">CTO, Paladin</div>
+      </div>
+      <div class="test-card">
+        <div class="test-context">Startup launch</div>
+        <div class="test-quote">"Galadrim was the ideal partner to go from idea to product. Their agility and transparency were decisive for our launch."</div>
+        <div class="test-sep"></div>
+        <div class="test-name">Clemence Luc</div>
+        <div class="test-role">Co-founder and CEO, 10%</div>
+      </div>
+      <div class="test-card">
+        <div class="test-context">Long-term partnership</div>
+        <div class="test-quote">"An incredible team of highly skilled developers who work remarkably fast. They are adaptable, proactive and always find the most efficient solution. I highly recommend them."</div>
+        <div class="test-sep"></div>
+        <div class="test-name">Client testimonial</div>
+        <div class="test-role">Via Galadrim Paris office reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-preview reveal" id="blog">
+  <div class="blog-head">
+    <div class="section-head" style="margin-bottom:0">
+      <p class="section-label">From our engineering team</p>
+      <h2 class="section-title">Technical insights.</h2>
+    </div>
+    <a href="#" class="blog-more">All articles</a>
+  </div>
+  <div class="blog-grid">
+    <a href="#" class="blog-card">
+      <div class="blog-thumb"><img src="https://galadrim.fr/_astro/f10e857a-d747-4703-8dbb-d962ad66ca1e-2026_02_05_0e1_Kleki_23ckGc.webp" alt="Grafana K6 benchmarking"></div>
+      <div class="blog-card-tag">Benchmarks</div>
+      <div class="blog-card-title">Which language for a high-performance backend in 2026? Benchmarking with Grafana K6</div>
+    </a>
+    <a href="#" class="blog-card">
+      <div class="blog-thumb"><img src="https://galadrim.fr/_astro/b0724d53-fe46-4754-8805-d42915f01553-ansi_Z1a75Ow.webp" alt="ANSI terminal security"></div>
+      <div class="blog-card-tag">Security</div>
+      <div class="blog-card-title">How terminal colours can compromise your security</div>
+    </a>
+    <a href="#" class="blog-card">
+      <div class="blog-thumb"><img src="https://galadrim.fr/_astro/B0bxCNchuWP7MABpAmZNF-V2_ZKv7KX.webp" alt="Web Application Firewall"></div>
+      <div class="blog-card-tag">Security</div>
+      <div class="blog-card-title">Understanding Web Application Firewalls: a practical guide for product teams</div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta reveal" id="contact">
+  <div class="cta-inner">
+    <p class="section-label">Start a conversation</p>
+    <h2>Let's build something together.</h2>
+    <p>Tell us about your project. We'll come back with a scope, a timeline and a realistic budget within one week. No commitment required.</p>
+    <a href="#" class="btn-main">Book a discovery call</a>
+    <span class="cta-note">Free 30-minute call. We respond within 24 hours.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">galadrim.</div>
+        <p class="footer-brand-desc">Product engineering for ambitious companies. Web, mobile and AI, from Paris to London.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Web Platforms</a></li>
+          <li><a href="#">Mobile Apps</a></li>
+          <li><a href="#">AI and ML</a></li>
+          <li><a href="#">E-commerce</a></li>
+          <li><a href="#">Product Design</a></li>
+          <li><a href="#">Cloud and DevOps</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Method</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:uk@galadrim.fr">uk@galadrim.fr</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">2025 Galadrim SAS. Registered in France. All rights reserved.</span>
+      <div class="footer-locs">
+        <span>Paris</span><span>Nantes</span><span>Lyon</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="badge"><strong>Concept by Nicolas</strong> for Galadrim UK</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
